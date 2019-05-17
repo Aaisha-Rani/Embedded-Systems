@@ -1,0 +1,20 @@
+#include<LPC214X.h>
+int i,j;
+int stop(int z)
+{
+for(i=0;i<=z;i++)
+{
+for(j=0;j<=1675;j++)
+{
+}
+}
+return 0;
+}
+void main()
+{
+IODIR0=0X0000000F;
+IOSET0=0X0000000F;
+stop(14);
+IOCLR0=0X00000005;
+  stop(14);
+}
