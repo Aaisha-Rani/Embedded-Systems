@@ -1,0 +1,56 @@
+#include<avr/io.h>
+#include<util/delay.h>
+void main()
+{
+DDRA=0XFF;
+DDRB=0XFF;
+DDRC=0XFF;
+unsigned ar[]={0b10111111,0b00000110,0b01011011,0b11001111,0b11100110,0b01101101,0b11111100,0b10000111,0b11111111,0b11100111};
+int i,j,k,a,b,c,d,e,f;
+
+while(1)
+{
+for(k=0;k<=2;k++)
+{
+if(k==0)
+{
+PORTC=0b00000001;
+{
+for(i=5;i>=0;i--)
+{
+for(j=9;j>=0;j--)
+{
+PORTB=ar[i];
+PORTA=ar[j];
+_delay_ms(500);
+}
+}
+}
+PORTC=0b00000010;
+}
+else if(k==1)
+{
+for(i=5;i>=0;i--)
+{
+PORTB=ar[i];
+for(j=9;j>=0;j--)
+{
+PORTA=ar[j];
+_delay_ms(500);
+}
+}
+}
+else if(k==2)
+{
+PORTC=0b00000100;
+{
+for(i=5;i>=0;i--)
+{
+PORTB=ar[i];
+for(j=9;j>=0;j--)
+{
+PORTA=ar[j];
+_delay_ms(500);
+}
+}
+}}}}}
