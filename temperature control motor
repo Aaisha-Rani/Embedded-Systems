@@ -1,0 +1,83 @@
+#include<avr/io.h>
+#define F_CPU 12000000
+#include<util/delay.h>
+void adc_init()
+{
+ADMUX=(1<<REFS1);
+ADCSRA=((1<<ADEN)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0));
+}
+unsigned int adc_read(unsigned int ch)
+{
+ADMUX=0b01000000|ch;
+ADCSRA|=(1<<ADSC);
+while((ADCSRA&(1<<ADIF))==0);
+
+ADCSRA|=(1<<ADIF);
+return ADC;
+}
+void lcd_command(unsigned char cmd)
+{
+PORTC=cmd;
+PORTB=0b00000100;
+_delay_ms(1);
+PORTB=0b00000000;
+_delay_ms(1);
+}
+void lcd_data(unsigned char da)
+{
+PORTC=da;
+PORTB=0b00000101;
+_delay_ms(1);
+PORTB=0b00000001;
+_delay_ms(1);
+}
+
+void lcd_init()
+{
+lcd_command(0x02);
+lcd_command(0x38);
+lcd_command(0x06);
+lcd_command(0x0c);
+}
+
+void lcd_number(unsigned int num)
+{
+int d=0; 
+lcd_command(0x04);
+if(num==0)
+{
+lcd_data(48);
+}
+while(num!=0)
+{
+d=num%10;
+lcd_data(d+48);
+num=num/100;
+}
+}
+
+
+void main()
+{
+unsigned int a;
+DDRA=0b00000000;
+DDRC=DDRB=0b11111111;
+DDRD=0b11111111;
+lcd_init();
+adc_init();
+while(1)
+{
+a=adc_read(0);
+if(a<=30)
+{
+PORTD=0b00000011;
+}
+
+else
+{
+PORTD=0b00000010;
+}
+lcd_command(0x86);
+lcd_number(a);
+}
+}
