@@ -1,18 +1,18 @@
 #include<reg51.h>
-
+// Define a function to generate delay
 int delay(int z)
   {	int i,j;
-  for( i=0;i<=z;i++)
-  for(j=0;j<=1675;j++);
+  for( i=0;i<=z;i++) // Loop 'z' times
+  for(j=0;j<=1675;j++); // Nested loop to generate delay
   }
-
+// Main function
   void main()
   {
-  while(1)
+  while(1) // Infinite loop
   {
-	  P2=0x00;
-  delay(50);
-  P2=0xFF;
-  delay(50);
+	  P2=0x00; //Turn off the LED connected to P2
+  delay(50); // Generate a delay of 50 milliseconds
+  P2=0xFF; // Turn on the LED connected to P2
+  delay(50); // Generate a delay of 50 milliseconds
   }
   }
