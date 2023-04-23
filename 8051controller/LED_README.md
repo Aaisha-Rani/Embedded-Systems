@@ -11,7 +11,8 @@ This folder contains the source code for an LED blinking program using the 8051 
 * Resistor
 * Breadboard
 * Connecting wires
-## Circuit Diagram
+## Circuit ![led1](https://user-images.githubusercontent.com/50737229/233836132-14827577-9698-403a-8bb0-957e3ab9d322.png)
+Diagram
 
 ![LED Screenshot](file:///C:/Users/aaish/OneDrive/Pictures/Screenshots/led1.png)
 
