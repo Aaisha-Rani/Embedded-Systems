@@ -1,27 +1,47 @@
+// Including header file for LPC214X microcontroller
 #include<LPC214X.h>
+
+// Declaring global variables i, j, and k
 int i,j,k;
+
+// A delay function that waits for 'z' milliseconds
 int stop(int z)
 {
-for(i=0;i<=z;i++)
-for(j=0;j<=1675;j++);
-return 0;
+    // Nested loops to introduce delay
+    for(i=0;i<=z;i++)
+        for(j=0;j<=1675;j++);
+    
+    return 0;
 }
 
-
-
+// Main function
 int main()
 {
-int a[12]={0x3F,0x06,0x5B,0X4F,0X66,0X6D,0X7D,0X07,0x7F,0x6F};
-int k;
-IODIR0=0X000000FF;
-while(1)
-{
-for(k=0;k<10;k++)
-{
-IOSET0=IOSET0|a[k];
-stop(14);
-IOCLR0=IOCLR0|a[k];
-  stop(14);
-}
-}
+    // Declaring an array of values to display on the seven-segment display
+    int a[12]={0x3F,0x06,0x5B,0X4F,0X66,0X6D,0X7D,0X07,0x7F,0x6F};
+    
+    // Setting direction of pins P0.0 to P0.7 as output
+    IODIR0=0X000000FF;
+    
+    // Looping forever
+    while(1)
+    {
+        // Looping through the array of values
+        for(k=0;k<10;k++)
+        {
+            // Setting the output pins to display the current value
+            IOSET0=IOSET0|a[k];
+            
+            // Delaying for 14 milliseconds
+            stop(14);
+            
+            // Clearing the output pins
+            IOCLR0=IOCLR0|a[k];
+            
+            // Delaying for another 14 milliseconds
+            stop(14);
+        }
+    }
+    
+    return 0;
 }
