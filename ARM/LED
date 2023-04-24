@@ -1,21 +1,39 @@
 
+// Including header file for LPC214X microcontroller
 #include<LPC214X.h>
+
+// Declaring global variables i and j
 int i,j;
+
+// A delay function that waits for 'z' milliseconds
 int stop(int z)
 {
-for(i=0;i<=z;i++)
-{
-for(j=0;j<=1675;j++)
-{
+    // Nested loops to introduce delay
+    for(i=0;i<=z;i++)
+    {
+        for(j=0;j<=1675;j++)
+        {
+            // Do nothing
+        }
+    }
+    return 0;
 }
-}
-return 0;
-}
+
+// Main function
 void main()
 {
-IODIR0=0X0000000F;
-IOSET0=0X0000000F;
-stop(14);
-IOCLR0=0X00000005;
-  stop(14);
+    // Setting direction of pins P0.0 to P0.3 as output
+    IODIR0=0X0000000F;
+    
+    // Setting all pins P0.0 to P0.3 to high
+    IOSET0=0X0000000F;
+    
+    // Delaying for 14 milliseconds
+    stop(14);
+    
+    // Setting pins P0.0 and P0.2 to low
+    IOCLR0=0X00000005;
+    
+    // Delaying for another 14 milliseconds
+    stop(14);
 }
