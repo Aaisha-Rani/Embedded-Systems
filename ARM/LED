@@ -1,3 +1,4 @@
+
 #include<LPC214X.h>
 int i,j;
 int stop(int z)
