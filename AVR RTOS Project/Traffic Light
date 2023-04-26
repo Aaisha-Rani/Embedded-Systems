@@ -1,56 +1,64 @@
-#include<avr/io.h>
-#include<util/delay.h>
-void main()
-{
-DDRA=0XFF;
-DDRB=0XFF;
-DDRC=0XFF;
-unsigned ar[]={0b10111111,0b00000110,0b01011011,0b11001111,0b11100110,0b01101101,0b11111100,0b10000111,0b11111111,0b11100111};
-int i,j,k,a,b,c,d,e,f;
 
-while(1)
+#include <avr/io.h>   // Include AVR header file
+#include <util/delay.h>   // Include delay header file
+
+void main()   // Main function
 {
-for(k=0;k<=2;k++)
-{
-if(k==0)
-{
-PORTC=0b00000001;
-{
-for(i=5;i>=0;i--)
-{
-for(j=9;j>=0;j--)
-{
-PORTB=ar[i];
-PORTA=ar[j];
-_delay_ms(500);
+    DDRA = 0xFF;   // Set PORTA pins as output
+    DDRB = 0xFF;   // Set PORTB pins as output
+    DDRC = 0xFF;   // Set PORTC pins as output
+    unsigned ar[] = {0b10111111, 0b00000110, 0b01011011, 0b11001111, 0b11100110, 0b01101101, 0b11111100, 0b10000111, 0b11111111, 0b11100111};   // An array of binary numbers to be displayed
+
+    int i, j, k, a, b, c, d, e, f;   // Declare variables
+
+    while (1)   // Infinite loop
+    {
+        for (k = 0; k <= 2; k++)   // Loop through each of the 3 display modes
+        {
+            if (k == 0)   // If in mode 0 (display on the left)
+            {
+                PORTC = 0b00000001;   // Set PORTC to display on the left
+                {
+                    for (i = 5; i >= 0; i--)   // Loop through the first 6 digits
+                    {
+                        for (j = 9; j >= 0; j--)   // Loop through the last 10 digits
+                        {
+                            PORTB = ar[i];   // Display the ith binary number on PORTB
+                            PORTA = ar[j];   // Display the jth binary number on PORTA
+                            _delay_ms(500);   // Delay for 500 milliseconds
+                        }
+                    }
+                }
+                PORTC = 0b00000010;   // Set PORTC to display on the right
+            }
+            else if (k == 1)   // If in mode 1 (display on the right)
+            {
+                for (i = 5; i >= 0; i--)   // Loop through the first 6 digits
+                {
+                    PORTB = ar[i];   // Display the ith binary number on PORTB
+                    for (j = 9; j >= 0; j--)   // Loop through the last 10 digits
+                    {
+                        PORTA = ar[j];   // Display the jth binary number on PORTA
+                        _delay_ms(500);   // Delay for 500 milliseconds
+                    }
+                }
+            }
+            else if (k == 2)   // If in mode 2 (display on both sides)
+            {
+                PORTC = 0b00000100;   // Set PORTC to display on both sides
+                {
+                    for (i = 5; i >= 0; i--)   // Loop through the first 6 digits
+                    {
+                        PORTB = ar[i];   // Display the ith binary number on PORTB
+                        for (j = 9; j >= 0; j--)   // Loop through the last 10 digits
+                        {
+                            PORTA = ar[j];   // Display the jth binary number on PORTA
+                            _delay_ms(500);   // Delay for 500 milliseconds
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-}
-}
-PORTC=0b00000010;
-}
-else if(k==1)
-{
-for(i=5;i>=0;i--)
-{
-PORTB=ar[i];
-for(j=9;j>=0;j--)
-{
-PORTA=ar[j];
-_delay_ms(500);
-}
-}
-}
-else if(k==2)
-{
-PORTC=0b00000100;
-{
-for(i=5;i>=0;i--)
-{
-PORTB=ar[i];
-for(j=9;j>=0;j--)
-{
-PORTA=ar[j];
-_delay_ms(500);
-}
-}
-}}}}}
+
