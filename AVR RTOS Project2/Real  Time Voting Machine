@@ -4,75 +4,113 @@
 #include<avr/io.h>
 #include<util/delay.h>
 
-int f[10],w[10],q[10],v[10];
-int s;
-void lcdcmd(char x)
+int f[10],w[10],q[10],v[10];    //Declare arrays to store vote counts for each party
+int s;   //Declare an integer variable to store a temporary value
+
+
+void lcdcmd(char x)     //Function to send command instructions to LCD
 {
-PORTD=x;
-PORTC=0b00000100;
-_delay_ms(100);
-PORTC=0b00000000;
+
+PORTD=x;     //Send command to PORTD
+PORTC=0b00000100;  //Set the enable pin high to execute the command
+_delay_ms(100);        //Delay for 100ms
+PORTC=0b00000000;   //Set the enable pin low to end the command
 }
-void lcddata(char y)
+
+void lcddata(char y)  //Function to send data to LCD
+
 {
-PORTD=y;
-PORTC=0b00000101;
-_delay_ms(100);
-PORTC=0b00000001;
+ //Send data to PORTD
+    PORTD=y;
+    //Set the enable pin and RS pin high to send data
+    PORTC=0b00000101;
+    //Delay for 100ms
+    _delay_ms(100);
+    //Set the enable pin and RS pin low to end the data transmission
+    PORTC=0b00000001;
 }
+//Function to send a string to LCD
 void lcdstring(char y[])
 {
-for(int i=0;y[i]!='\0';i++)
+for(int i=0;y[i]!='\0';i++)   //Iterate through each character in the string
+
 {
-lcddata(y[i]);
+lcddata(y[i]); //Send each character to the LCD
 }
 }
 void main()
 {
-DDRB=0b00000000;
+ //Set PORTB as input
+    DDRB=0b00000000;
 
-DDRC=0b11111111;
+    //Set PORTC and PORTD as output
+    DDRC=0b11111111;
+    DDRD=0b11111111;
 
-DDRD=0b11111111;
-lcdcmd(0X38);
-lcdcmd(0X0E);
-lcdcmd(0X01);
-lcdcmd(0X80);
-lcdstring("WELCOME PLS VOTE");
-int aa=0,bb=0,z=0,pp=0;
-while(1)
-{
-if(PINB==0b00000001)
-{
-lcdstring("BJP");
-itoa(aa,f,10);
-lcdstring(f);
-lcdcmd(0X01);
-aa++;
-}
-if(PINB==0b00000010)
-{
-lcdstring("congress");
-itoa(bb,w,10);
-lcdstring(w);
-lcdcmd(0X01);
-bb++;
-}
+    //Initialize the LCD
+    lcdcmd(0X38); //Two line display and 5x7 font size
+    lcdcmd(0X0E); //Display on, cursor on and blinking
+    lcdcmd(0X01); //Clear display
+    lcdcmd(0X80); //Set cursor to first line, first position
+    lcdstring("WELCOME PLS VOTE");
+
+    //Initialize variables to store vote counts
+    int aa=0,bb=0,z=0,pp=0;
+    
+    while(1)
+    {
+        //Check if button for BJP is pressed
+        if(PINB==0b00000001)
+        {
+            //Display BJP on the LCD
+            lcdstring("BJP");
+            //Convert and display the number of votes for BJP
+            itoa(aa,f,10);
+            lcdstring(f);
+            //Clear the display
+            lcdcmd(0X01);
+            //Increment the number of votes for BJP
+            aa++;
+        }
+        
+//Check if button for Congress is pressed
+        if(PINB==0b00000010)
+        {
+            //Display Congress on the LCD
+            lcdstring("congress");
+            //Convert and display the number of votes for Congress
+            itoa(bb,w,10);
+            lcdstring(w);
+            //Clear the display
+            lcdcmd(0X01);
+            //Increment the number of votes for Congress
+            bb++;
+        }
+        
+  //Check if button for BSPA is pressed
 if(PINB==0b00000100)
 {
-lcdstring("BSPA");
+lcdstring("BSPA"); //Display BSPA on the LCD
 itoa(pp,q,10);
 lcdstring(q);
-lcdcmd(0X01);
+
+lcdcmd(0X01); //Convert and display the number of votes for BSPA
+
+//Increment the number of votes for BSPA
 pp++;
 }
+ //Check if button for SPA is pressed
 if(PINB==0b00001000)
 {
 lcdstring("SPA");
+
+//Convert and display the number of votes for SPA
 itoa(z,v,10);
 lcdstring(v);
-lcdcmd(0x01);
-z++;
+
+lcdcmd(0x01);  //Clear the display 
+
+z++; //Increment the number of votes for SPA
 }
 if(PINB==0b00010000)
 {
@@ -106,3 +144,9 @@ _delay_ms(100);
 
 
 }
+
+############################################################################################
+
+
+
+
