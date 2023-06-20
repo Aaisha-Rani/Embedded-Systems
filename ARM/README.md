@@ -1,19 +1,20 @@
 # LPC214X Microcontroller Code
 
-This repository contains code written in C for the LPC214X microcontroller. The code demonstrates how to control the output pins of the LPC214X microcontroller to set them to a high or low state with specific delays.
+This repository contains code written in C for the LPC214X microcontroller. 
+The code demonstrates how to control the output pins of the LPC214X microcontroller to set them to a high or low state with specific delays.
 
-Prerequisites
+# Prerequisites
 To run this code, you will need:
-
 LPC214X microcontroller
 Development environment for LPC214X (e.g., Keil uVision)
-Appropriate hardware connections
+
 Getting Started
-Clone this repository to your local machine or download the source code files.
-Open the project in your preferred development environment (e.g., Keil uVision).
-Make sure you have the necessary toolchain and target settings configured.
-Build and flash the code onto your LPC214X microcontroller.
-Code Description
+* Clone this repository to your local machine or download the source code files.
+* Open the project in your preferred development environment (e.g., Keil uVision).
+* Make sure you have the necessary toolchain and target settings configured.
+* Build and flash the code onto your LPC214X microcontroller.
+  
+# Code Description
 The main code sets the direction and state of specific pins on the LPC214X microcontroller. Here's a breakdown of the code:
 
 The stop(int z) function is defined to introduce a delay. It uses nested loops to achieve the desired delay.
