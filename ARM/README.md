@@ -1,4 +1,4 @@
-#LPC214X Microcontroller Code
+# LPC214X Microcontroller Code
 
 This repository contains code written in C for the LPC214X microcontroller. The code demonstrates how to control the output pins of the LPC214X microcontroller to set them to a high or low state with specific delays.
 
