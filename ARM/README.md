@@ -5,8 +5,9 @@ The code demonstrates how to control the output pins of the LPC214X microcontrol
 
 # Prerequisites
 To run this code, you will need:
-LPC214X microcontroller
-Development environment for LPC214X (e.g., Keil uVision)
+
+* LPC214X microcontroller
+* Development environment for LPC214X (e.g., Keil uVision)
 
 Getting Started
 * Clone this repository to your local machine or download the source code files.
@@ -17,11 +18,10 @@ Getting Started
 # Code Description
 The main code sets the direction and state of specific pins on the LPC214X microcontroller. Here's a breakdown of the code:
 
-The stop(int z) function is defined to introduce a delay. It uses nested loops to achieve the desired delay.
-The main() function is where the main functionality of the code resides.
-The direction of pins P0.0 to P0.3 is set as output using the IODIR0 register.
-All pins P0.0 to P0.3 are set to a high state using the IOSET0 register.
-A delay of 14 milliseconds is introduced using the stop() function.
-Pins P0.0 and P0.2 are set to a low state using the IOCLR0 register.
-Another delay of 14 milliseconds is introduced using the stop() function.
-Please note that the specific pin assignments and delays in this code are for demonstration purposes. Modify the code as per your requirements and hardware connections.
+* The stop(int z) function is defined to introduce a delay. It uses nested loops to achieve the desired delay.
+* The main() function is where the main functionality of the code resides.
+* The direction of pins P0.0 to P0.3 is set as output using the IODIR0 register.
+* All pins P0.0 to P0.3 are set to a high state using the IOSET0 register.
+* A delay of 14 milliseconds is introduced using the stop() function.
+* Pins P0.0 and P0.2 are set to a low state using the IOCLR0 register.
+* Another delay of 14 milliseconds is introduced using the stop() function.
