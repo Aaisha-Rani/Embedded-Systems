@@ -9,7 +9,7 @@ To run this code, you will need:
 * LPC214X microcontroller
 * Development environment for LPC214X (e.g., Keil uVision)
 
-Getting Started
+# Getting Started
 * Clone this repository to your local machine or download the source code files.
 * Open the project in your preferred development environment (e.g., Keil uVision).
 * Make sure you have the necessary toolchain and target settings configured.
